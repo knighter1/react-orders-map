@@ -1,12 +1,14 @@
+import React from 'react';
 import './App.css';
-import Map from '../Map/Map';
+import 'leaflet/dist/leaflet.css';
+import LocationMap from '../LocationMap/LocationMap';
 
 const App = () => {
     return (
         <div className="App">
-            <Map />
+            <LocationMap />
         </div>
     );
 }
 
-export default App;
+export default App; 
