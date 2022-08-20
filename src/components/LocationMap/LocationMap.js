@@ -16,4 +16,4 @@ const LocationMap = ({coords, zoom}) => {
     );
 }
 
-export default LocationMap; 
+export default LocationMap;
