@@ -13,4 +13,4 @@ const App = () => {
     </SplitPane>
 )};
 
-export default App; 
+export default App;
