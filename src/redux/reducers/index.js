@@ -1,10 +1,18 @@
-import { combineReducers, createStore } from 'redux';
+import { combineReducers, applyMiddleware, compose, createStore } from 'redux';
 import { orderReducer } from './orderReducer';
 import { mapMarkersReducer } from './mapMarkersReducer';
+import { mapRouteReducer } from './mapRouteReducer';
+import thunk from 'redux-thunk';
 
 export const rootReducer = combineReducers({
     order: orderReducer,
-    mapMarkers: mapMarkersReducer
+    mapMarkers: mapMarkersReducer,
+    mapRoute: mapRouteReducer
 });
 
-export const store = createStore(rootReducer);
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const middleWares = applyMiddleware(thunk);
+const enhancer = composeEnhancers(middleWares);
+
+export const store = createStore(rootReducer, enhancer);

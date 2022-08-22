@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
-import { Map, TileLayer, Marker } from 'react-leaflet';
-import { useSelector } from 'react-redux';
+import { Map, TileLayer, Marker, Polyline } from 'react-leaflet';
+import { useSelector } from '../../hooks';
 
 import './LocationMap.css';
 import 'leaflet/dist/leaflet.css';
@@ -17,9 +17,10 @@ L.Icon.Default.mergeOptions({
 const LocationMap = ({coords, zoom}) => {
     const mapRef = useRef();
     const mapMarkers = useSelector(store => store.mapMarkers);
+    const route = useSelector(store => store.mapRoute?.points);
 
     const defaultCoords = [59.93, 30.30];
-    const defaultZoom = 11;
+    const defaultZoom = 12;
 
     return (
         <Map ref={mapRef} center={coords || defaultCoords} zoom={zoom || defaultZoom}>
@@ -28,6 +29,7 @@ const LocationMap = ({coords, zoom}) => {
                 {
                     return <Marker key={index} position={[marker.lat, marker.lng]}></Marker>;
                 })}
+            {route && <Polyline positions={route} />}
         </Map>
     );
 }

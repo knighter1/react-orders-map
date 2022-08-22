@@ -1,12 +1,12 @@
 import { Select } from "antd";
 import { CHANGE_DESTINATION_POINT, CHANGE_SOURCE_POINT, SELECT_ORDER } from "../../redux/actions/orderActions";
 import { RESET_MARKERS, SETUP_MARKER } from "../../redux/actions/mapMarkersActions";
-import { useSelector, useDispatch } from 'react-redux';
+import { getPointById } from "../../utils/points";
+import { buildRoute } from "../../redux/actions/mapRouteActions";
+import { useSelector, useDispatch } from "../../hooks";
 
 import "antd/dist/antd.css";
 import styles from './OrderListItem.module.css';
-import { getPointById } from "../../utils/points";
-import { useEffect } from "react";
 
 const { Option } = Select;
 
@@ -42,6 +42,8 @@ const OrderListItem = ({orderId, points}) => {
     };
 
     const selectOrder = () => {
+        dispatch(buildRoute(orderData.source, orderData.dest));
+
         if (orderId === currentOrderId)
             return;
 

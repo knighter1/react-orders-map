@@ -3,7 +3,7 @@ import { List } from 'antd';
 import points from '../../points.json';
 
 import styles from './OrdersList.module.css';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from '../../hooks';
 import { useEffect } from 'react';
 import { SET_ORDERS } from '../../redux/actions/orderActions';
 
