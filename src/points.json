@@ -1,10 +1,10 @@
 [
-    {"name":"point1","id":1,"lat":10,"lng":10},
-    {"name":"point2","id":2,"lat":20,"lng":10},
-    {"name":"point3","id":3,"lat":30,"lng":10},
-    {"name":"point4","id":4,"lat":20,"lng":40},
-    {"name":"point5","id":5,"lat":40,"lng":20},
-    {"name":"point6","id":6,"lat":30,"lng":30},
-    {"name":"point7","id":7,"lat":10,"lng":30},
-    {"name":"point8","id":8,"lat":30,"lng":30}
+    {"name":"point1","id":1,"lat":59.8122882,"lng":30.3339047},
+    {"name":"point2","id":2,"lat":59.8076528,"lng":30.2870093},
+    {"name":"point3","id":3,"lat":59.8324527,"lng":30.1430159},
+    {"name":"point4","id":4,"lat":59.8695796,"lng":30.3736379},
+    {"name":"point5","id":5,"lat":59.9426828,"lng":30.3566046},
+    {"name":"point6","id":6,"lat":59.9756351,"lng":30.3537176},
+    {"name":"point7","id":7,"lat":59.9946801,"lng":30.3280891},
+    {"name":"point8","id":8,"lat":59.9947669,"lng":30.1327495}
 ]

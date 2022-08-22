@@ -19,7 +19,7 @@ const OrdersList = ({orders}) => {
                     key={item.id}
                     actions={[]}
                 >
-                    <OrderListItem data={item} points={points} />
+                    <OrderListItem orderData={item} points={points} />
                 </List.Item>
             )}
             />

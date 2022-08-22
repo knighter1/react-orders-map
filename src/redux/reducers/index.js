@@ -1,14 +1,10 @@
-import { applyMiddleware, combineReducers, createStore } from 'redux';
-import thunk from 'redux-thunk';
+import { combineReducers, createStore } from 'redux';
 import { ordersListReducer } from './ordersListReducer';
+import { mapMarkersReducer } from './mapMarkersReducer';
 
 export const rootReducer = combineReducers({
-    ordersList: ordersListReducer
+    ordersList: ordersListReducer,
+    mapMarkers: mapMarkersReducer
 });
 
-//const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-
-/*const middleWares = applyMiddleware(thunk, wsFeed, wsUser);
-const enhancer = composeEnhancers(middleWares);*/
-
-export const store = createStore(rootReducer/*, enhancer*/);
+export const store = createStore(rootReducer);
