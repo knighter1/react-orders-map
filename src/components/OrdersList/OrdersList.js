@@ -1,4 +1,4 @@
-import OrderItem from '../OrderItem/OrderItem';
+import OrderListItem from '../OrderListItem/OrderListItem';
 import { List } from 'antd';
 import points from '../../points.json';
 
@@ -19,7 +19,7 @@ const OrdersList = ({orders}) => {
                     key={item.id}
                     actions={[]}
                 >
-                    <OrderItem data={item} points={points} />
+                    <OrderListItem data={item} points={points} />
                 </List.Item>
             )}
             />

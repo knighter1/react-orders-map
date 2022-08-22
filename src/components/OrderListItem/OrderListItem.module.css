@@ -1,5 +1,7 @@
 .container {
     background-color: #efefef;
+    padding: 3px;
+    border: 2px solid #efefef;
 }
 
 .label {
@@ -11,4 +13,8 @@
 
 .list {
     width: 100%;
+}
+
+.selected {
+    border: 2px solid #bbbbbb;
 }
