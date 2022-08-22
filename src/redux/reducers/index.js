@@ -1,9 +1,9 @@
 import { combineReducers, createStore } from 'redux';
-import { ordersListReducer } from './ordersListReducer';
+import { orderReducer } from './orderReducer';
 import { mapMarkersReducer } from './mapMarkersReducer';
 
 export const rootReducer = combineReducers({
-    ordersList: ordersListReducer,
+    order: orderReducer,
     mapMarkers: mapMarkersReducer
 });
 
