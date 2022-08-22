@@ -10,7 +10,7 @@ const OrderItem = ({data, points}) => {
         <div className={styles.container}>
             <div>
                 <span className={styles.label}>Откуда:</span>
-                <Select style={{width: 200}} listItemHeight={10} listHeight={250} value={data.from}>
+                <Select className={styles.list} listItemHeight={10} listHeight={250} value={data.from}>
                 {
                     points.map(item => {
                         return <Option value={item.id} key={item.id}>{item.name}</Option>
@@ -21,7 +21,7 @@ const OrderItem = ({data, points}) => {
 
             <div>
                 <span className={styles.label}>Куда:</span>
-                <Select style={{width: 200}} listItemHeight={10} listHeight={250} value={data.dest}>
+                <Select className={styles.list} listItemHeight={10} listHeight={250} value={data.dest}>
                 {
                     points.map(item => {
                         return <Option value={item.id} key={item.id}>{item.name}</Option>
