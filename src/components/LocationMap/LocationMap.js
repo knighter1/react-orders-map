@@ -23,14 +23,13 @@ const LocationMap = ({coords, zoom}) => {
     const defaultZoom = 12;
 
     return (
-        <Map ref={mapRef} center={coords || defaultCoords} zoom={zoom || defaultZoom}>
-            <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" attribution="&copy; <a href=&quot;https://www.openstreetmap.org/copyright&quot;>OpenStreetMap</a> contributors" />
-            {mapMarkers && mapMarkers.map((marker, index) =>
-                {
-                    return <Marker key={index} position={[marker.lat, marker.lng]}></Marker>;
-                })}
-            {route && <Polyline positions={route} />}
-        </Map>
+        <div className="mapContainer">
+            <Map ref={mapRef} center={coords || defaultCoords} zoom={zoom || defaultZoom}>
+                <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" attribution="&copy; <a href=&quot;https://www.openstreetmap.org/copyright&quot;>OpenStreetMap</a> contributors" />
+                {mapMarkers && mapMarkers.map((marker, index) => <Marker key={index} position={[marker.lat, marker.lng]} />)}
+                {route && <Polyline positions={route} />}
+            </Map>
+        </div>
     );
 }
 

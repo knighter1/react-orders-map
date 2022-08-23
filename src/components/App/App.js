@@ -11,7 +11,7 @@ import orders from '../../orders.json';
 
 const App = () => {
     return (
-        <SplitPane split="vertical" minSize={400} defaultSize={400} onDragFinished={() => (console.log('finish'))}>
+        <SplitPane split="vertical" minSize={200} defaultSize={400}>
             <OrdersList orders={orders} />
             <LocationMap />
         </SplitPane>

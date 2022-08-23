@@ -13,8 +13,8 @@
     "react-dom": "^18.2.0",
     "react-leaflet": "^2.6.3",
     "react-redux": "^8.0.2",
-    "react-scripts": "5.0.1",
-    "react-split-pane": "0.1.87",
+    "react-scripts": "^5.0.1",
+    "react-split-pane": "^0.1.92",
     "redux": "^4.2.0",
     "redux-thunk": "^2.4.1"
   },
