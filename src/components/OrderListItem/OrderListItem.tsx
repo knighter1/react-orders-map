@@ -1,16 +1,24 @@
 import { Select } from "antd";
-import { CHANGE_DESTINATION_POINT, CHANGE_SOURCE_POINT, SELECT_ORDER } from "../../redux/actions/orderActions";
-import { RESET_MARKERS, SETUP_MARKER } from "../../redux/actions/mapMarkersActions";
+import { changeDestinationPoint, changeSourcePoint, selectOrder } from "../../redux/actions/orderActions";
+import { resetMarkers, setupMarker } from "../../redux/actions/mapMarkersActions";
 import { getPointById } from "../../utils/points";
-import { buildRoute } from "../../redux/actions/mapRouteActions";
+import { buildRoute, buildRouteSuccess } from "../../redux/actions/mapRouteActions";
 import { useSelector, useDispatch } from "../../hooks";
 
 import "antd/dist/antd.css";
 import styles from './OrderListItem.module.css';
+import { TPoint } from "../../Types/point";
+import { FC } from "react";
+import { IOrder } from "../../Types/order";
 
 const { Option } = Select;
 
-const OrderListItem = ({orderId, points}) => {
+interface IOrderListItemProps {
+    orderId: number;
+    points: TPoint[];
+}
+
+const OrderListItem: FC<IOrderListItemProps> = ({orderId, points}: IOrderListItemProps) => {
 
     const dispatch = useDispatch();
 
@@ -18,41 +26,42 @@ const OrderListItem = ({orderId, points}) => {
     const orders = orderReducer.ordersList
     const currentOrderId = orderReducer.currentOrderId;
 
-    const orderData = orders && orders.find(item => item.id === orderId);
+    const orderData = orders && orders.find((item: IOrder) => item.id === orderId);
 
     const updateMarkers = () => {
-        dispatch({type: RESET_MARKERS});
+        dispatch(resetMarkers());
+        dispatch(buildRouteSuccess([]));
 
-        const [sourcePoint, destPoint] = [getPointById(orderData.source), getPointById(orderData.dest)];
+        const [sourcePoint, destPoint]: [TPoint | undefined, TPoint| undefined] = [getPointById(orderData.source), getPointById(orderData.dest)];
 
-        dispatch({type: SETUP_MARKER, position: {lat: sourcePoint.lat, lng: sourcePoint.lng}});
-        dispatch({type: SETUP_MARKER, position: {lat: destPoint.lat, lng: destPoint.lng}});
+        sourcePoint && dispatch(setupMarker({lat: sourcePoint.lat, lng: sourcePoint.lng}));
+        destPoint && dispatch(setupMarker({lat: destPoint.lat, lng: destPoint.lng}));
     }
 
-    const handleChangeSource = (value) => {
-        dispatch({type: CHANGE_SOURCE_POINT, orderId, pointId: value});
+    const handleChangeSource = (value: number) => {
+        dispatch(changeSourcePoint(orderId, value));
         orderData.source = value;
         updateMarkers();
     };
 
-    const handleChangeDestination = (value) => {
-        dispatch({type: CHANGE_DESTINATION_POINT, orderId, pointId: value});
+    const handleChangeDestination = (value: number) => {
+        dispatch(changeDestinationPoint(orderId, value));
         orderData.dest = value;
         updateMarkers();
     };
 
-    const selectOrder = () => {
+    const handleSelectOrder = () => {
         dispatch(buildRoute(orderData.source, orderData.dest));
 
         if (orderId === currentOrderId)
             return;
 
-        dispatch({type: SELECT_ORDER, orderId});
+        dispatch(selectOrder(orderId));
         updateMarkers();
     }
 
     return (
-        orderData && <div className={`${styles.container} ${currentOrderId === orderId ? styles.selected : ''}`} onClick={(d) => selectOrder(d)}>
+        orderData && <div className={`${styles.container} ${currentOrderId === orderId ? styles.selected : ''}`} onClick={() => handleSelectOrder()}>
             <div>
                 <span className={styles.label}>Откуда:</span>
                 <Select className={styles.list} listItemHeight={10} listHeight={250} value={orderData.source} onChange={handleChangeSource}>
